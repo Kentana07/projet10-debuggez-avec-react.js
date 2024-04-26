@@ -13,13 +13,25 @@ const Select = ({
   label,
   type = "normal",
 }) => {
+  // useState pour gérer la valeur actuelle sélectionnée
   const [value, setValue] = useState();
+
+  // useState pour contrôler l'état ouvert/fermé du menu déroulant
   const [collapsed, setCollapsed] = useState(true);
+
+  // Fonction pour gérer les changements de sélection
   const changeValue = (newValue) => {
-    onChange();
+    // Met à jour la valeur sélectionnée via la fonction parent onChange
+    onChange(newValue);
+
+    // Met à jour la valeur locale stockée dans le state
     setValue(newValue);
-    setCollapsed(newValue);
+
+    // Bascule l'état du menu déroulant pour ouvrir/fermer
+    setCollapsed(!collapsed);
   };
+
+  // Composant visuel
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
