@@ -5,19 +5,22 @@ import { getMonth } from "../../helpers/Date";
 import "./style.scss";
 
 const Slider = () => {
-  const { data } = useData(); // Utiliser le contexte pour récupérer les données
+  const { data } = useData(); // Utiliser contexte pour récupérer les données
   const [index, setIndex] = useState(0); // Index pour contrôler la slide affichée
 
-  // Trier les données par date en ordre décroissant si data?.focus est disponible
-  const byDateDesc = data?.focus ? [...data.focus].sort((evtA, evtB) => 
-    new Date(evtB.date) - new Date(evtA.date)
-  ) : [];
+  // Trier les données par date en ordre décroissant si data?.focus existe
+  const byDateDesc = data?.focus
+    ? [...data.focus].sort(
+        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+      )
+    : [];
 
   // useEffect pour gérer le défilement automatique des slides
   useEffect(() => {
-    if (byDateDesc.length > 0) { // S'assurer qu'il y a des données avant de démarrer l'intervalle
+    if (byDateDesc.length > 0) {
+      // S'assurer qu'il y a des données avant de démarrer l'intervalle
       const intervalId = setInterval(() => {
-        setIndex(prevIndex => (prevIndex + 1) % byDateDesc.length); // Incrémenter l'index ou revenir à 0
+        setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length); // Incrémenter l'index ou revenir à 0
       }, 5000); // Changer de slide toutes les 5 secondes
 
       return () => clearInterval(intervalId); // Nettoyer l'intervalle quand le composant se démonte
@@ -35,14 +38,16 @@ const Slider = () => {
       {byDateDesc.map((event, idx) => (
         <div
           key={event.id || idx} // Utiliser l'id de l'événement ou l'index comme clé
-          className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`} // Afficher ou cacher la slide selon l'index
+          className={`SlideCard SlideCard--${
+            index === idx ? "display" : "hide"
+          }`} // Afficher ou cacher la slide selon l'index
         >
           <img src={event.cover} alt={event.title} />
           <div className="SlideCard__descriptionContainer">
             <div className="SlideCard__description">
               <h3>{event.title}</h3>
               <p>{event.description}</p>
-              <div>{getMonth(new Date(event.date))}</div> 
+              <div>{getMonth(new Date(event.date))}</div>
             </div>
           </div>
         </div>
