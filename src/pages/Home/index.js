@@ -121,17 +121,19 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre dernière prestation</h3>
-          <Modal Content={<ModalEvent event={last} />}>
-            {({ setIsOpened }) => (
-              <EventCard
-                onClick={() => setIsOpened(true)}
-                imageSrc={last?.cover}
-                title={last?.title}
-                date={new Date(last?.date)}
-                label={last?.type}
-              />
-            )}
-          </Modal>
+          {last && (
+            <Modal Content={<ModalEvent event={last} />}>
+              {({ setIsOpened }) => (
+                <EventCard
+                  onClick={() => setIsOpened(true)}
+                  imageSrc={last?.cover}
+                  title={last?.title}
+                  date={new Date(last?.date)}
+                  label={last?.type}
+                />
+              )}
+            </Modal>
+          )}
         </div>
         <div className="col contact">
           <h3>Contactez-nous</h3>
