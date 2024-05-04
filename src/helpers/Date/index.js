@@ -12,5 +12,5 @@ export const MONTHS = {
   10: "novembre",
   11: "décembre",
 };
-
+// changement des mois pour correspondre au demandes
 export const getMonth = (date) => MONTHS[date.getMonth()];

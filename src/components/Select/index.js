@@ -27,7 +27,7 @@ const Select = ({
     // Met à jour la valeur locale stockée dans le state
     setValue(newValue);
 
-    // Bascule l'état du menu déroulant pour ouvrir/fermer
+    // Bascule l'état du menu pour ouvrir/fermer
     setCollapsed(!collapsed);
   };
 
