@@ -31,7 +31,6 @@ const Select = ({
     setCollapsed(!collapsed);
   };
 
-  // Composant visuel
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}

@@ -57,7 +57,7 @@ const Slider = () => {
         <div className="SlideCard__pagination">
           {byDateDesc.map((event, radioIdx) => (
             <input
-              key={event.id || radioIdx} // Utiliser l'id de l'événement ou l'index comme clé pour chaque bouton radio
+              key={event.id || radioIdx} // Utiliser l'id de l'événement ou l'index pour chaque bouton radio
               type="radio"
               name="radio-button"
               checked={index === radioIdx} // Le bouton est coché si l'index correspond
